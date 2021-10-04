@@ -24,17 +24,26 @@ def extract_indeed_jobs(last_page):
   result = requests.get(f"{URL}&start={0*LIMIT}")
   soup = BeautifulSoup(result.text, 'html.parser')
   results = soup.find_all("a", {"class":"fs-unmask"})
-  i = 0
+  index = 1
   for result in results:
-    job_title = result.find("td", {"class":"resultContent"}).find("div", {"class":"heading4"}).find("span").string
-    # if job_title != "new":
-    #   print(job_title)
+    job_title = result.find("td", {"class":"resultContent"}).find("div", {"class":"heading4"}).find_all("span")
+    if len(job_title) > 1:
+      job_title = job_title[1].string
+    else:
+      job_title = job_title[0].string
+
+    NO_COMPANY_NAME = None
     find_company = result.find("div",{"class":"heading6"}).find("span",{"class":"companyName"}).find("a")
-    if find_company != None:
+    if type(find_company) == type(NO_COMPANY_NAME):
+      company_name = str(NO_COMPANY_NAME)
+    else:
       company_name = find_company.string
-      print(company_name)
-      i += 1
-    print(i)  
+    
+    print("#" + str(index) + " - job: " + job_title + " / company: " + company_name)
+    index += 1
+    
+
+
 
 
 
