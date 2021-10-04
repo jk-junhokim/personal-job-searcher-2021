@@ -19,6 +19,7 @@ def extract_indeed_pages():
 
   return max_page
 
+
 def extract_job_info(result):
 
   # get job
@@ -43,30 +44,21 @@ def extract_job_info(result):
   # get link
   get_link = result["href"]
   job_link = f"https://www.indeed.com{get_link}"
-  print(job_link)
 
-  return None
-
-  # return {"job: " + job_title + " , company: " + company_name + " , location: " + location + " , link: " + link}
+  return {"job": job_title,  "company": company_name, "location": location, "link": job_link}
 
 
 def extract_indeed_jobs(last_page):
   jobs = []
-  # for page in range(last_page):
-  result = requests.get(f"{URL}&start={0*LIMIT}")
-  soup = BeautifulSoup(result.text, 'html.parser')
-  results = soup.find_all("a", {"class":"fs-unmask"})
-  for result in results:
-    job = extract_job_info(result)
-    jobs.append(job)
-    print(job)
+  for page in range(last_page):
+    print(f"Scrapping page {page}")
+    result = requests.get(f"{URL}&start={page*LIMIT}")
+    soup = BeautifulSoup(result.text, 'html.parser')
+    results = soup.find_all("a", {"class":"fs-unmask"})
+    for result in results:
+      job = extract_job_info(result)
+      jobs.append(job)
     
   return jobs
     
-
-
-
-
-
-
 
