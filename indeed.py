@@ -21,20 +21,33 @@ def extract_indeed_pages():
 
 def extract_job_info(result):
 
+  # get job
   job_title = result.find("td", {"class":"resultContent"}).find("div", {"class":"heading4"}).find_all("span")
   if len(job_title) > 1:
     job_title = job_title[1].string
   else:
     job_title = job_title[0].string
 
+  # get company
   NO_COMPANY_NAME = None
   find_company = result.find("div",{"class":"heading6"}).find("span",{"class":"companyName"}).find("a")
   if type(find_company) == type(NO_COMPANY_NAME):
     company_name = str(NO_COMPANY_NAME)
   else:
     company_name = find_company.string
-  
-  return {"job: " + job_title + " , company: " + company_name}
+
+  # get location
+  get_location = result.find("div",{"class":"heading6"}).find("div", {"class": "companyLocation"}).text
+  location = get_location
+
+  # get link
+  get_link = result["href"]
+  job_link = f"https://www.indeed.com{get_link}"
+  print(job_link)
+
+  return None
+
+  # return {"job: " + job_title + " , company: " + company_name + " , location: " + location + " , link: " + link}
 
 
 def extract_indeed_jobs(last_page):
@@ -47,6 +60,8 @@ def extract_indeed_jobs(last_page):
     job = extract_job_info(result)
     jobs.append(job)
     print(job)
+    
+  return jobs
     
 
 
