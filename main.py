@@ -1,6 +1,6 @@
 # from indeed import extract_indeed_pages, extract_indeed_jobs
 # from save import save_to_file
-from flask import Flask
+from flask import Flask, render_template
 
 # last_indeed_pages = extract_indeed_pages()
 # indeed_jobs = extract_indeed_jobs(last_indeed_pages)
@@ -10,11 +10,7 @@ app = Flask("SuperScrapper")
 
 @app.route("/")
 def home():
-    return "Hello! Welcome to mi casa!"
-
-@app.route("/contact")
-def contact():
-    return "Contact me!"
+    return render_template("home.html")
 
 app.run(host="0.0.0.0")
 
