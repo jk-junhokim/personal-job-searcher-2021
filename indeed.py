@@ -65,7 +65,6 @@ def extract_indeed_jobs(last_page, indeed_url):
     for result in results:
       job = extract_job_info(result)
       jobs.append(job)
-      print(job)
     
   return jobs
     
