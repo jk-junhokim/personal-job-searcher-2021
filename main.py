@@ -1,12 +1,14 @@
-# from indeed import extract_indeed_pages, extract_indeed_jobs
-# from save import save_to_file
-from flask import Flask, render_template, request
+from indeed import extract_indeed_pages, extract_indeed_jobs, get_indeed_jobs
+from save import save_to_file
+from flask import Flask, render_template, request, redirect
 
 # last_indeed_pages = extract_indeed_pages()
 # indeed_jobs = extract_indeed_jobs(last_indeed_pages)
-# save_to_file(indeed_jobs)
+# jobs = get_indeed_jobs("vue")
+# save_to_file(jobs)
 
 app = Flask("SuperScrapper")
+existing_jobs_database = {}
 
 @app.route("/")
 def home():
@@ -15,13 +17,21 @@ def home():
 @app.route("/report")
 def report():
     word = request.args.get('word')
-    return render_template("report.html", searchingBy=word)
+    if word:
+        word = word.lower()
+        existing_jobs = existing_jobs_database.get(word)
+        if existing_jobs:
+            jobs = existing_jobs
+        else:
+            jobs = get_indeed_jobs(word)
+            existing_jobs_database[word] = jobs
+    else:
+       return redirect("/")
+
+    return render_template("report.html",
+                            searchingBy=word,
+                            resultNumber=len(jobs),
+                            jobs=jobs
+                            )
 
 app.run(host="0.0.0.0")
-
-# taking a day off...
-# recharge for the weekend...
-
-
-
-
