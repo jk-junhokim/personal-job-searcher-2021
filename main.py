@@ -1,6 +1,6 @@
 from indeed import extract_indeed_pages, extract_indeed_jobs, get_indeed_jobs
 from save import save_to_file
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 
 # last_indeed_pages = extract_indeed_pages()
 # indeed_jobs = extract_indeed_jobs(last_indeed_pages)
@@ -44,7 +44,8 @@ def export():
         jobs = existing_jobs_database.get(word)
         if not jobs:
             raise Exception()
-        return f"Generate CSV for {word}"
+        save_to_file(jobs)
+        return send_file("jobs.csv")
     except:
         return redirect("/")
 
