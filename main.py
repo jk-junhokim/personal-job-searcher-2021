@@ -1,4 +1,5 @@
 from indeed import extract_indeed_pages, extract_indeed_jobs, get_indeed_jobs
+from weworkremotely import extract_wwr_sections, extract_wwr_jobs, get_wwr_jobs
 from save import save_to_file
 from flask import Flask, render_template, request, redirect, send_file
 
@@ -6,7 +7,11 @@ from flask import Flask, render_template, request, redirect, send_file
 # indeed_jobs = extract_indeed_jobs(last_indeed_pages)
 # jobs = get_indeed_jobs("vue")
 # save_to_file(jobs)
+sections = get_wwr_jobs("react")
 
+
+
+"""
 app = Flask("SuperScrapper")
 existing_jobs_database = {}
 
@@ -51,3 +56,4 @@ def export():
 
 
 app.run(host="0.0.0.0")
+"""

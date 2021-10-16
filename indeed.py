@@ -19,7 +19,7 @@ def extract_indeed_pages(indeed_url):
   return max_page
 
 
-def extract_job_info(result):
+def extract_indeed_job_info(result):
 
   # get job
   job_title = result.find("td", {"class":"resultContent"}).find("div", {"class":"heading4"}).find_all("span")
@@ -63,7 +63,7 @@ def extract_indeed_jobs(last_page, indeed_url):
     soup = BeautifulSoup(result.text, 'html.parser')
     results = soup.find_all("a", {"class":"fs-unmask"})
     for result in results:
-      job = extract_job_info(result)
+      job = extract_indeed_job_info(result)
       jobs.append(job)
     
   return jobs
