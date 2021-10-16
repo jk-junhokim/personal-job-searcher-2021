@@ -14,12 +14,30 @@ def extract_wwr_sections(wwr_url):
     for each_section in sections_divided:
         section_specifics = each_section.find("ul")
         jobs_per_section = section_specifics.find_all("li")
-        print(jobs_per_section)
-        # for jobs in jobs_per_section:
-        #     unique_job_link = jobs.find("a")["href"]
-        #     job_application_link = f"https://weworkremotely.com{unique_job_link}"
-        #     print(job_application_link)
-        #     print("-------------------------------------------")
+        # print(jobs_per_section)
+        for jobs in jobs_per_section:
+            # unique_job_link = jobs.find("a")["href"]
+            check_new_or_not = jobs.find("span", {"class":"new"})
+            if check_new_or_not != None:
+                unique_job_link = jobs.select_one(":nth-child(4)")
+                print(unique_job_link)
+                print("")
+                print(type(unique_job_link))
+                print("-------------------------------------------")
+            elif check_new_or_not == None:
+                unique_job_link = jobs.select_one(":nth-child(3)")
+                print(unique_job_link)
+                print("")
+                print(type(unique_job_link))
+                print("-------------------------------------------")
+            else:
+                print("Exception!")
+                
+
+
+            # job_application_link = f"https://weworkremotely.com{unique_job_link}"
+            # print(job_application_link)
+            # print("-------------------------------------------")
 
         
 
