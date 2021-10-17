@@ -1,14 +1,31 @@
 from indeed import extract_indeed_pages, extract_indeed_jobs, get_indeed_jobs
-from weworkremotely import extract_wwr_sections, extract_wwr_jobs, get_wwr_jobs
+from weworkremotely import extract_wwr_job_info, get_wwr_jobs
+from remoteok import extract_remoteok_job_info, get_remoteok_jobs
 from save import save_to_file
 from flask import Flask, render_template, request, redirect, send_file
 
+"""
+https://weworkremotely.com/
+https://stackoverflow.com/jobs
+https://remoteok.io/
+
+MODEL = https://imgur.com/DCIdYE5
+"""
+
+##### GET INDEED JOBS #####
 # last_indeed_pages = extract_indeed_pages()
 # indeed_jobs = extract_indeed_jobs(last_indeed_pages)
 # jobs = get_indeed_jobs("vue")
-# save_to_file(jobs)
-sections = get_wwr_jobs("react")
 
+##### GET WEWORKREMOTELY JOBS #####
+# wwr_jobs = get_wwr_jobs("react")
+
+##### GET REMOTEOK JOBS #####
+remoteok_jobs = get_remoteok_jobs("react")
+
+
+##### MAKE CSV FILE #####
+# save_to_file(jobs)
 
 
 """

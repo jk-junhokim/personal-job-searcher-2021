@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-def extract_wwr_job_info(wwr_url):
+def extract_remoteok_job_info(wwr_url):
 
     # job_title, job_company, job_application_link
 
@@ -35,8 +35,8 @@ def extract_wwr_job_info(wwr_url):
             "job_company":return_company_name,
             "job_link":return_application_link}
 
-def get_wwr_jobs(word):
+def get_remoteok_jobs(word):
     wwr_url = f"https://weworkremotely.com/remote-jobs/search?term={word}"
-    jobs = extract_wwr_job_info(wwr_url)
+    jobs = extract_remoteok_job_info(wwr_url)
 
     return jobs
