@@ -1,42 +1,39 @@
 import requests
 from bs4 import BeautifulSoup
 
-def extract_remoteok_job_info(wwr_url):
+# what does "headers" do?
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'}
+
+def create_remote_url(word):
+    REMOTE_URL = f"https://remoteok.io/remote-{word}-jobs"
+
+    return REMOTE_URL
+
+def extract_remote_job_info(remote_url):
 
     # job_title, job_company, job_application_link
 
-    wwr_result = requests.get(wwr_url)
-    wwr_soup = BeautifulSoup(wwr_result.text, 'html.parser')
-    sections = wwr_soup.find("div", {"class":"jobs-container"})
-    sections_divided = sections.find_all("section", {"class":"jobs"})
+    remote_result = requests.get(remote_url, headers=headers)
+    remote_soup = BeautifulSoup(remote_result.text, 'html.parser')
+    job_container = remote_soup.find("div", {"class":"container"}).find("table", {"id":"jobsboard"}).find_all("tr", {"class":"job"})
 
-    for each_section in sections_divided:
-        section_specifics = each_section.find("ul")
-        jobs_per_section = section_specifics.find_all("li")
-        for jobs in jobs_per_section:
-            get_correct_link = jobs.find_all("a")
-            correct = "region company"
-            for link_unique in get_correct_link:
-                link_string = str(link_unique)
-                if correct in link_string:
-                    correct_link = link_unique
-                    return_link = correct_link.get("href")
-                else:
-                    return_link = "None"
-        
-            
-            # get company name & application link
-            if return_link != "None":
-                return_job_title = correct_link.find("span", {"class":"title"}).string
-                return_company_name = correct_link.find("span", {"class":"company"}).string
-                return_application_link = f"https://weworkremotely.com/{return_link}"
+    for job in job_container:
+        link = job["data-href"]
+        return_job_link = f"https://remoteok.io{link}"
 
-    return {"job_title":return_job_title,
-            "job_company":return_company_name,
-            "job_link":return_application_link}
+        title = job.find("h2", {"itemprop":"title"})
+        print(title)
 
-def get_remoteok_jobs(word):
-    wwr_url = f"https://weworkremotely.com/remote-jobs/search?term={word}"
-    jobs = extract_remoteok_job_info(wwr_url)
 
-    return jobs
+
+
+    # return {"job_title":return_job_title,
+    #         "job_company":return_company_name,
+    #         "job_link":return_application_link}
+    pass
+
+def get_remote_jobs(remote_url):
+    jobs = extract_remote_job_info(remote_url)
+
+    # return jobs
+    pass
