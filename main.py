@@ -5,24 +5,27 @@ from save import save_to_file
 from flask import Flask, render_template, request, redirect, send_file
 
 """
-https://weworkremotely.com/
-https://stackoverflow.com/jobs
-https://remoteok.io/
+Base Platforms:
+1. https://weworkremotely.com/
+2. https://stackoverflow.com/jobs
+3. https://remoteok.io/
+"""
 
+"""
 MODEL = https://imgur.com/DCIdYE5
 """
 
 ##### GET INDEED JOBS #####
-# last_indeed_pages = extract_indeed_pages()
-# indeed_jobs = extract_indeed_jobs(last_indeed_pages)
-# jobs = get_indeed_jobs("vue")
+last_indeed_pages = extract_indeed_pages()
+indeed_jobs = extract_indeed_jobs(last_indeed_pages)
+jobs = get_indeed_jobs("vue")
 
 #### GET WEWORKREMOTELY JOBS #####
 wwr_jobs = get_wwr_jobs("react")
 
 ##### GET REMOTEOK JOBS #####
-# remote_url = create_remote_url("react")
-# remoteok_jobs = get_remote_jobs(remote_url)
+remote_url = create_remote_url("react")
+remoteok_jobs = get_remote_jobs(remote_url)
 
 
 
