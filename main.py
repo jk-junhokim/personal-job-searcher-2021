@@ -1,7 +1,7 @@
-# from indeed import extract_indeed_pages, extract_indeed_jobs, get_indeed_jobs
-# from weworkremotely import extract_wwr_job_info, get_wwr_jobs
+from indeed import extract_indeed_pages, extract_indeed_jobs, get_indeed_jobs
+from weworkremotely import extract_wwr_job_info, get_wwr_jobs
 from remoteok import extract_remote_job_info, get_remote_jobs, create_remote_url
-# from save import save_to_file
+from save import save_to_file
 from flask import Flask, render_template, request, redirect, send_file
 
 """
@@ -17,8 +17,8 @@ MODEL = https://imgur.com/DCIdYE5
 # indeed_jobs = extract_indeed_jobs(last_indeed_pages)
 # jobs = get_indeed_jobs("vue")
 
-##### GET WEWORKREMOTELY JOBS #####
-# wwr_jobs = get_wwr_jobs("react")
+#### GET WEWORKREMOTELY JOBS #####
+wwr_jobs = get_wwr_jobs("react")
 
 ##### GET REMOTEOK JOBS #####
 # remote_url = create_remote_url("react")
