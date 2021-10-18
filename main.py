@@ -21,8 +21,8 @@ MODEL = https://imgur.com/DCIdYE5
 # wwr_jobs = get_wwr_jobs("react")
 
 ##### GET REMOTEOK JOBS #####
-remote_url = create_remote_url("react")
-remoteok_jobs = get_remote_jobs(remote_url)
+# remote_url = create_remote_url("react")
+# remoteok_jobs = get_remote_jobs(remote_url)
 
 
 

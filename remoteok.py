@@ -17,23 +17,27 @@ def extract_remote_job_info(remote_url):
     remote_soup = BeautifulSoup(remote_result.text, 'html.parser')
     job_container = remote_soup.find("div", {"class":"container"}).find("table", {"id":"jobsboard"}).find_all("tr", {"class":"job"})
 
+    jobs = []
+
     for job in job_container:
+        return_job_title = job.find("h2", {"itemprop":"title"}).string
+
+        return_company_name = job["data-company"]
+
         link = job["data-href"]
-        return_job_link = f"https://remoteok.io{link}"
+        return_application_link = f"https://remoteok.io{link}"
 
-        title = job.find("h2", {"itemprop":"title"})
-        print(title)
+        job_info = {"job_title":return_job_title,
+                    "job_company":return_company_name, "job_link":return_application_link}
 
+        jobs.append(job_info)
 
-
-
-    # return {"job_title":return_job_title,
-    #         "job_company":return_company_name,
-    #         "job_link":return_application_link}
-    pass
+    return jobs
 
 def get_remote_jobs(remote_url):
     jobs = extract_remote_job_info(remote_url)
+
+    print(jobs)
 
     # return jobs
     pass
