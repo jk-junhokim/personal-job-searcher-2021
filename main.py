@@ -31,9 +31,8 @@ remoteok_jobs = get_remote_jobs(remote_url)
 # save_to_file(jobs)
 
 
-"""
 app = Flask("Personal Job Scraper")
-existing_jobs_database = {}
+jobs_database = {}
 
 @app.route("/")
 def home():
@@ -44,12 +43,13 @@ def report():
     word = request.args.get('word')
     if word:
         word = word.lower()
-        existing_jobs = existing_jobs_database.get(word)
+        existing_jobs = jobs_database.get(word)
         if existing_jobs:
             jobs = existing_jobs
         else:
+            # i need to update this part so that it scraps all info from all three websites
             jobs = get_indeed_jobs(word)
-            existing_jobs_database[word] = jobs
+            jobs_database[word] = jobs
     else:
        return redirect("/")
 
@@ -66,7 +66,7 @@ def export():
         if not word:
             raise Exception()
         word = word.lower()
-        jobs = existing_jobs_database.get(word)
+        jobs = jobs_database.get(word)
         if not jobs:
             raise Exception()
         save_to_file(jobs)
@@ -75,5 +75,4 @@ def export():
         return redirect("/")
 
 
-app.run(host="0.0.0.0")
-"""
+# app.run(host="0.0.0.0")
