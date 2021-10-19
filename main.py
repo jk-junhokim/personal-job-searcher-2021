@@ -27,14 +27,12 @@ wwr_jobs = get_wwr_jobs("react")
 remote_url = create_remote_url("react")
 remoteok_jobs = get_remote_jobs(remote_url)
 
-
-
 ##### MAKE CSV FILE #####
 # save_to_file(jobs)
 
 
 """
-app = Flask("SuperScrapper")
+app = Flask("Personal Job Scraper")
 existing_jobs_database = {}
 
 @app.route("/")

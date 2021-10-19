@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Results</title>
-    <style>
+    <!-- <style>
         section{
             display: grid;
             gap: 20px;
             grid-template-columns: repeat(4, 1fr);
         }
-    </style>
+    </style> -->
 </head>
 <body>
 
-    <h1>Search Results for Remote Jobs</h1>
-    <h3>{{resultNumber}} {{searchingBy}} jobs found.</h3>
-    <a href="/export?word={{searchingBy}}">Export to CSV</a>
-    <h3>
+    <h1>Your Taste of Remote Jobs</h1>
+    <h4>{{resultNumber}} {{searchingBy}} jobs found.</h4>
+    <div class="csv">
+        <a href="/export?word={{searchingBy}}">Export to CSV</a>
+        <i class="fas fa-file-csv"></i>
+        <!-- need to import font awesome -->
+    </div>
+    <h4>
         <i class="far fa-arrow-alt-circle-left"></i>
         <!-- need to import font awesome -->
-        <span>Go Back</span>
-    </h3>
+        <span>Go Back to Search</span>
+    </h4>
     <section>
         <h4>Title</h4>
         <h4>Company</h4>
