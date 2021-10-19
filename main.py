@@ -18,7 +18,7 @@ MODEL = https://imgur.com/DCIdYE5
 ##### GET INDEED JOBS #####
 last_indeed_pages = extract_indeed_pages()
 indeed_jobs = extract_indeed_jobs(last_indeed_pages)
-jobs = get_indeed_jobs("vue")
+indeed_jobs = get_indeed_jobs("react")
 
 #### GET WEWORKREMOTELY JOBS #####
 wwr_jobs = get_wwr_jobs("react")
@@ -48,7 +48,18 @@ def report():
             jobs = existing_jobs
         else:
             # i need to update this part so that it scraps all info from all three websites
-            jobs = get_indeed_jobs(word)
+            # should modify each jobs function so that it can be written in a single line where i only pass the keyword
+            
+            # jobs = get_indeed_jobs(word)
+
+            last_indeed_pages = extract_indeed_pages()
+            indeed_jobs = extract_indeed_jobs(last_indeed_pages)
+            indeed_jobs = get_indeed_jobs("react")
+
+            wwr_jobs = get_wwr_jobs("react")
+
+            remote_url = create_remote_url("react")
+            remoteok_jobs = get_remote_jobs(remote_url)
             jobs_database[word] = jobs
     else:
        return redirect("/")
