@@ -31,17 +31,18 @@ def home():
 @app.route("/report")
 def report():
     word = request.args.get('word')
+    jobs = []
     if word:
         word = word.lower()
         existing_jobs = jobs_database.get(word)
         if existing_jobs:
             jobs = existing_jobs
         else:
-            # i need to update this part so that it scraps all info from all three websites
-
             indeed_jobs = get_indeed_jobs(word)
             wwr_jobs = get_wwr_jobs(word)
             remoteok_jobs = get_remote_jobs(word)
+
+            jobs = indeed_jobs + wwr_jobs + remoteok_jobs
 
             jobs_database[word] = jobs
     else:
@@ -69,7 +70,4 @@ def export():
         return redirect("/")
 
 
-
 # app.run(host="0.0.0.0")
-
-# everything good?
