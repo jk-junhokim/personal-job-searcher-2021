@@ -31,9 +31,9 @@ def extract_wwr_job_info(wwr_url):
                     return_company_name = correct_link.find("span", {"class":"company"}).string
                     return_application_link = f"https://weworkremotely.com/{return_link}"
 
-                    job_info = {"job_title":return_job_title,
-                                "job_company":return_company_name,
-                                "job_link":return_application_link}
+                    job_info = {"title":return_job_title,
+                                "company":return_company_name,
+                                "_link":return_application_link}
 
                     jobs.append(job_info)
 

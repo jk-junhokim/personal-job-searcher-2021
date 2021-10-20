@@ -22,8 +22,9 @@ def extract_remote_job_info(remote_url):
         link = job["data-href"]
         return_application_link = f"https://remoteok.io{link}"
 
-        job_info = {"job_title":return_job_title,
-                    "job_company":return_company_name, "job_link":return_application_link}
+        job_info = {"title":return_job_title,
+                    "company":return_company_name,
+                    "link":return_application_link}
 
         jobs.append(job_info)
 
