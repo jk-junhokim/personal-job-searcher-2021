@@ -4,11 +4,6 @@ from bs4 import BeautifulSoup
 # what does "headers" do?
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'}
 
-def create_remote_url(word):
-    REMOTE_URL = f"https://remoteok.io/remote-{word}-jobs"
-
-    return REMOTE_URL
-
 def extract_remote_job_info(remote_url):
 
     # job_title, job_company, job_application_link
@@ -34,10 +29,14 @@ def extract_remote_job_info(remote_url):
 
     return jobs
 
-def get_remote_jobs(remote_url):
+def create_remote_url(word):
+    remote_url = f"https://remoteok.io/remote-{word}-jobs"
+
+    return remote_url    
+
+def get_remote_jobs(word):
+
+    remote_url = create_remote_url(word)
     jobs = extract_remote_job_info(remote_url)
 
-    print(jobs)
-
-    # return jobs
-    pass
+    return jobs

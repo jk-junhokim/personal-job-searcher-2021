@@ -1,31 +1,21 @@
-from indeed import extract_indeed_pages, extract_indeed_jobs, get_indeed_jobs
-from weworkremotely import extract_wwr_job_info, get_wwr_jobs
-from remoteok import extract_remote_job_info, get_remote_jobs, create_remote_url
+from indeed import get_indeed_jobs
+from weworkremotely import get_wwr_jobs
+from remoteok import get_remote_jobs
 from save import save_to_file
 from flask import Flask, render_template, request, redirect, send_file
-
-"""
-Base Platforms:
-1. https://weworkremotely.com/
-2. https://stackoverflow.com/jobs
-3. https://remoteok.io/
-"""
 
 """
 MODEL = https://imgur.com/DCIdYE5
 """
 
 ##### GET INDEED JOBS #####
-last_indeed_pages = extract_indeed_pages()
-indeed_jobs = extract_indeed_jobs(last_indeed_pages)
-jobs = get_indeed_jobs("vue")
+indeed_jobs = get_indeed_jobs("react")
 
 #### GET WEWORKREMOTELY JOBS #####
 wwr_jobs = get_wwr_jobs("react")
 
-##### GET REMOTEOK JOBS #####
-remote_url = create_remote_url("react")
-remoteok_jobs = get_remote_jobs(remote_url)
+#### GET REMOTEOK JOBS #####
+remoteok_jobs = get_remote_jobs("react")
 
 ##### MAKE CSV FILE #####
 # save_to_file(jobs)
@@ -48,7 +38,11 @@ def report():
             jobs = existing_jobs
         else:
             # i need to update this part so that it scraps all info from all three websites
-            jobs = get_indeed_jobs(word)
+
+            indeed_jobs = get_indeed_jobs(word)
+            wwr_jobs = get_wwr_jobs(word)
+            remoteok_jobs = get_remote_jobs(word)
+
             jobs_database[word] = jobs
     else:
        return redirect("/")

@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 
 LIMIT = 50
 
-
 def extract_indeed_pages(indeed_url):
   indeed_result = requests.get(indeed_url)
   indeed_soup = BeautifulSoup(indeed_result.text, 'html.parser')
@@ -58,7 +57,6 @@ def extract_indeed_job_info(result):
 def extract_indeed_jobs(last_page, indeed_url):
   jobs = []
   for page in range(last_page):
-    print(f"Scrapping page {page}")
     result = requests.get(f"{indeed_url}&start={page*LIMIT}")
     soup = BeautifulSoup(result.text, 'html.parser')
     results = soup.find_all("a", {"class":"fs-unmask"})
