@@ -54,21 +54,20 @@ def report():
                             jobs=jobs
                             )
 
-@app.route("/export")
-def export():
-    try:
-        word = request.args.get("word")
-        if not word:
-            raise Exception()
-        word = word.lower()
-        jobs = jobs_database.get(word)
-        if not jobs:
-            raise Exception()
-        save_to_file(jobs)
-        return send_file("jobs.csv")
-    except:
-        return redirect("/")
+# @app.route("/export")
+# def export():
+#     try:
+#         word = request.args.get("word")
+#         if not word:
+#             raise Exception()
+#         word = word.lower()
+#         jobs = jobs_database.get(word)
+#         if not jobs:
+#             raise Exception()
+#         save_to_file(jobs)
+#         return send_file("jobs.csv")
+#     except:
+#         return redirect("/")
 
 
-# app.run(host="0.0.0.0")
-# start watching from #4.6
+app.run(host="0.0.0.0")

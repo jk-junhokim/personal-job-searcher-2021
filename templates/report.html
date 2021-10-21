@@ -4,14 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Results</title>
-    <!-- <style>
-        section{
-            display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(4, 1fr);
-        }
-    </style> -->
-</head>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
 <body>
 
     <h1>Your Taste of Remote Jobs</h1>
@@ -19,12 +12,10 @@
     <div class="csv">
         <a href="/export?word={{searchingBy}}">Export to CSV</a>
         <i class="fas fa-file-csv"></i>
-        <!-- need to import font awesome -->
     </div>
 
     <h4>
         <i class="far fa-arrow-alt-circle-left"></i>
-        <!-- need to import font awesome -->
         <span>Go Back to Search</span>
     </h4>
 
@@ -38,6 +29,9 @@
             <a href="{{job.link}}" target="_blank">Apply</a>
         {% endfor %}
     </section>
+
+    <!-- import font awesome -->
+    <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
     
 </body>
 </html>
