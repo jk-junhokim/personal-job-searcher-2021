@@ -33,7 +33,7 @@ def extract_wwr_job_info(wwr_url):
 
                     job_info = {"title":return_job_title,
                                 "company":return_company_name,
-                                "_link":return_application_link}
+                                "link":return_application_link}
 
                     jobs.append(job_info)
 

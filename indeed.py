@@ -51,9 +51,9 @@ def extract_indeed_job_info(result):
     get_link = result["href"]
     job_link = f"https://www.indeed.com{get_link}"
 
-    return {"job_title": job_title,
-            "job_company": company_name,
-            "job_link": job_link}
+    return {"title": job_title,
+            "company": company_name,
+            "link": job_link}
 
 
 def extract_indeed_jobs(last_page, indeed_url):
