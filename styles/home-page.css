@@ -1,0 +1,75 @@
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-family);
+    line-height: var(--line-height);
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+}
+
+footer,
+header,
+main {
+    margin: 0 auto;
+    max-width: var(--width-content);
+    padding: 3rem 1rem;
+}
+
+button {
+    border-radius: var(--border-radius);
+    display: inline-block;
+    font-size: medium;
+    font-weight: bold;
+    line-height: var(--line-height);
+    margin: 0.5rem 0;
+    padding: 1rem 2rem;
+}
+
+button {
+    font-family: var(--font-family);
+}
+
+button:active {
+    filter: brightness(var(--active-brightness));
+}
+
+button:hover {
+    cursor: pointer;
+    filter: brightness(var(--hover-brightness));
+}
+
+button {
+    background-color: var(--color-link);
+    border: 2px solid var(--color-link);
+    color: var(--color-bg);
+}
+
+button:disabled,
+input:disabled {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
+}
+
+button[disabled]:hover {
+    filter: none;
+}
+
+form {
+    border: 1px solid var(--color-bg-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow) var(--color-shadow);
+    display: block;
+    max-width: var(--width-card-wide);
+    min-width: var(--width-card);
+    padding: 1.5rem;
+    text-align: var(--justify-normal);
+}
+
+input{
+    display: block;
+    font-size: inherit;
+    max-width: var(--width-card-wide);
+}
