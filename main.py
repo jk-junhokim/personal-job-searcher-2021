@@ -4,9 +4,6 @@ from remoteok import get_remote_jobs
 from save import save_to_file
 from flask import Flask, render_template, request, redirect, send_file
 
-"""
-MODEL = https://imgur.com/DCIdYE5
-"""
 
 ##### GET INDEED JOBS #####
 indeed_jobs = get_indeed_jobs("react")
