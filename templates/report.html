@@ -4,32 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
-    <link href="styles/styles.css" rel="stylesheet" type="text/css" />
     <title>Job Results</title>
 <body>
 
-    <h1>Your Taste of Remote Jobs</h1>
-    <h4>{{resultNumber}} {{searchingBy}} jobs found.</h4>
-    <div class="csv">
-        <a href="/export?word={{searchingBy}}">Export to CSV</a>
-        <i class="fas fa-file-csv"></i>
-    </div>
+    <header>
+        <h1>Your Taste of Remote Jobs</h1>
+        <h3>{{resultNumber}} {{searchingBy}} jobs found.</h3>
+        <div class="csv">
+            <h4>
+                <a href="/export?word={{searchingBy}}">Export to CSV</a>
+                <i class="fas fa-file-csv"></i>
+            </h4>
+        </div>
+        <h4>
+            <i class="far fa-arrow-alt-circle-left"></i>
+            <span><a href="/">Go Back to Search</a></span>
+        </h4>
+    </header>
 
-    <h4>
-        <i class="far fa-arrow-alt-circle-left"></i>
-        <span>Go Back to Search</span>
-    </h4>
-
-    <section>
-        <h4>Title</h4>
-        <h4>Company</h4>
-        <h4>Link</h4>
+    <main>
         {% for job in jobs%}
-            <span>{{job.title}}</span>
-            <span>{{job.company}}</span>
-            <a href="{{job.link}}" target="_blank">Apply</a>
+            <div>
+                    <h2>{{job.title}}</h2>
+                    <h3>{{job.company}}</h3>
+                    <h3><a href="{{job.link}}" target="_blank">Apply</a></h3>
+                <hr />
+            </div>
         {% endfor %}
-    </section>
+    </main>
     
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
     
